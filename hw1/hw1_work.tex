@@ -1,0 +1,204 @@
+% <--- percent sign starts a comment line in LaTeX
+
+%----------------------------------------------------------
+% This is a sample assignment .tex file. Put your name,
+% assignment number and the due date below, as shown.
+% Before you typeset your own assignment try to preview 
+% and print this one as follows:
+%   1. Save this in a file, say hw.tex
+%   2. do "latex hw"
+%	3. latex will produce a pdf file that should be named hw.pdf.
+%	4. Use any pdf viewer to view the document 
+% ------------------------------------------------------------
+
+\documentclass[11pt]{article}
+
+\usepackage{fullpage,graphicx,latexsym,picinpar,amsbsy,amsmath,amsfonts}
+
+\input{macros.tex}
+
+\begin{document}
+	
+% v -- YOUR NAME and SID in the braces
+\student{Nathan Ha}{862377326}  
+% v -- YOUR NAME and SID in the braces
+% v -- ASSIGNMENT NUMBER in the braces
+\assignment{ 1 } 
+% v-- DUE DATE in the braces
+\duedate{January 22, 2024 }  
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lineacross
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % problem 1
+\begin{problem}
+	Give an asymptotic estimate  for the number $h(n)$ of ``Hello''s printed by Algorithm~\textsc{PrintHellos} below.
+Your solution \emph{must} consist of the following steps:
+%
+\begin{description}
+\item{(a)} First express $h(n)$ using the summation notation $\sum$.
+\item{(b)} Next, give a closed-form expression
+    for $h(n)$. 
+\item{(c)}  Finally, give the asymptotic value of $h(n)$ using the $\Theta$-notation.
+\end{description}
+\noindent
+Show your work and include justification for each step. 
+
+
+
+\begin{tabbing}
+aa \= aa \= aa \= aa \= aa \= aa \= \kill
+\textbf{Algorithm} \textsc{PrintHellos} $(n: \mbox{\bf integer})$ \\
+      \> \textbf{for} $i \leftarrow 1$ \textbf{to} $n$ \textbf{do} \\
+      \> \> \textbf{for} $j \leftarrow 1$ \textbf{to} $3i^2+i$ \textbf{do} print(``Hello") \\
+      \> \textbf{for} $i \leftarrow 1$ \textbf{to} $2n^2$
+                         \textbf{do} \\
+      \> \> \textbf{for} $j \leftarrow 1$ \textbf{to} $i$ \textbf{do}  print(``Hello") 
+\end{tabbing}
+
+\noindent
+\emph{Note:} If you need any summation formulas for this problem, you are allowed to look them up. You do not need to
+prove them, you can just state  in the assignment when you use them.
+\end{problem}
+
+%---------------------------
+
+% solution 1
+\begin{solution}
+
+\begin{description}
+\item{(a)} In summation notation, the number of "Hello's" that will be printed, $h(n)$, is expressed as $\mathbf{h(n)=\sum_{i=1}^{n}(\sum_{j=1}^{3i^2+i}1) + \sum_{i=1}^{2n^2}(\sum_{j=1}^{i}1)}$. The 1's inside of the innermost sums represent one "Hello" being printed. If you need the sum to be simplified, look at part (b).
+
+\item{(b)} We can rewrite the sum as $h(n)=\sum_{i=1}^{n}(3i^2+i) + \sum_{i=1}^{2n^2}(i)$. We can further break down the sums: \\ $h(n)=3\sum_{i=1}^{n}(i^2) + \sum_{i=1}^{n}(i) + \sum_{i=1}^{2n^2}(i)$. 
+\\ Now we can use the sum formulas that I looked up: 
+\\ \text{       }(1) $\sum_{i=1}^{n}i = \frac{1}{2}n(n+1)$
+\\ \text{       }(2) $\sum_{i=1}^{n}i^2 = \frac{1}{6}n(n+1)(2n+1)$
+\\ By substituting each sum with these formulas, we get:
+\\ $h(n) = 3(\frac{1}{6}n(n+1)(2n+1)) + \frac{1}{2}n(n+1) + \frac{1}{2}(2n^2)(2n^2+1) \\=
+\frac{1}{2}(2n^3+3n^2+n) + \frac{1}{2}(n^2+n)+\frac{1}{2}(4n^4+2n^2)
+= n^3 + \frac{3}{2}n^2 + \frac{1}{2}n + \frac{1}{2}n^2 + \frac{1}{2}n + 2n^4 + n^2
+\\ = \mathbf{2n^4 + n^3 + 3n^2 + n}$.
+
+\item{(c)}
+To find $\Theta$, we have to find $O$ and $\Omega$: 
+\\ O: $h(n) = 2n^4 + n^3 + 3n^2 + n \leq 2n^4 + n^4 + 3n^4 + n^4 = 7n^4 \implies h(n) = O(n^4)$.
+\\ $\Omega$: $h(n) = 2n^4 + n^3 + 3n^2 + n \geq 2n^4 \implies h(n) = \Omega (n^4)$. 
+\\ Since $h(n) = \Omega(n^4)$ and $h(n) = O(n^4)$, $h(n) = \Theta(n^4)$.
+
+% 2n^4 + n^3 + 3n^2 + n
+
+
+\end{description}
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+% problem 2
+\begin{problem}
+	
+\smallskip
+\noindent
+(a) Use properties of quadratic functions to prove that $3x^2 \geq (x + 1)^
+2$ for all real $x \ge 4$.
+
+\smallskip
+\noindent
+(b) Use mathematical induction and the inequality from part (a) to prove that $3^n \ge 2^{n} + 3n^2$ for all integers $n\ge 4$.
+
+\smallskip
+\noindent
+(c)
+Let $g(n) =  2^{n} + 3n^2$ and $h(n) = 3^n$.
+Using the inequality from part~(b), prove that $g(n) = O(h(n))$.
+You need to give a rigorous proof derived directly from 
+the definition of the $O$-notation, without using any theorems from class.
+(First, give a complete statement of the definition. 
+Next, show how $g(n) = O(h(n)) $ follows from this definition.)
+
+\end{problem}
+
+%-----------------------------
+% solution 2
+\begin{solution}
+\begin{description}
+
+\item{(a)} First, we can rearrange the equation to: $3x^2 - (x+1)^2 \ge 0$, then simplifying the left hand side, we get: $3x^2 - (x^2 + 2x + 1) = 2x^2 - 2x - 1 = f(x)$. Now we have $f(x) \ge 0$. We know from the properties of quadratic functions, that the function $f(x)$ represents an parabola that opens upwards. We also know from the properties of quadratic functions that these parabolas are monotonically increasing after a certain point. This point, the vertex, has an x value of $\frac{-b}{2a}$ for polynomials of the form $ax^2 + bx + c$. The x value vertex of this parabola, $f(x)$, can then be found to be $\frac{1}{2}$. This means that: $\forall x > \frac{1}{2}$, f(x) is strictly increasing. Since $f(4) = 23$, and $4 > \frac{1}{2}$, we can see that $f(x) > 23$, $\forall x > 4$, and therefore $f(x) > 0$. This implies that $3x^2 \geq (x + 1)^2$ is true for all $ x \ge 4$.
+
+\item{(b)} \textbf{Claim:} $3^n \ge 2^{n} + 3n^2$ for all integers $n\ge 4$
+\\ \textbf{Base Case:} Let n = 4. 
+\\ $3^4 \ge 2^4 + 3*4^2$
+\\ $81 \ge 16 + 48$
+\\ $81 \ge 64 \implies$ The statement is true for n=4.
+\\ \textbf{Induction Hypothesis:} Assume the statement holds for $n=k \ge 4$: $3^k \ge 2^{k} + 3k^2$.
+\\ \textbf{Inductive Step:} To show that the statement is true for n = k+1, we will multiply the entire inequality by 3 to get: $3\cdot3^k \ge 3\cdot2^{k} + 3\cdot3k^2$, which simplifies to $3^{k+1} \ge 3\cdot2^{k} + 3\cdot3k^2$. From here, we can make the following observations for $k \ge 4$:
+\\ $3^{k+1} \ge 3\cdot2^{k} + 3\cdot3k^2 \ge 2\cdot2^k + 3 \cdot 3k^2 \ge 2^{k+1} + 3k^2 \ge 3k^2 \ge (k+1)^2$. The last inequality comes from the result we showed in part (a). Since $(k+1)^2$ is less than $3k^2$, and $3^{k+1} \ge 2^{k+1} + 3k^2$, we can conclude that: $3^{k+1} \ge 2^{k+1} + 3(k+1)^2$. QED.
+
+\item {(c)} In order to prove that $g(n) = O(h(n))$, we will start with the definition: For two functions $g(n)$ and $h(n)$, $g(n) = O(h(n))$ if there are positive constants $c$ and $n_0$ such that $g(n) \le c \cdot h(n)$ for all $n \ge n_0$. Following from the result proved in part (b), we can see that $h(n) \ge g(n)$ for all integers $n \ge 4$. We can see that the conditions for the definition is satisfied, with $c=1$ and $n_0=4$, thus $g(n) = O(h(n))$.
+
+\end{description}
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+% problem 3
+\begin{problem}
+ 	Give asymptotic estimates, using the $\Theta$-notation, for the following functions:
+%
+\begin{description}\setlength{\itemsep}{-0.01in}
+%
+\item{(a)} $3n^3 - 15n^2 + 2n + 4$
+\item{(b)} $3n^2\log n +  2n^2\sqrt{n} + n^2$
+\item{(c)} $n\log^3n -5 n + \dfrac{n^2}{\log n}$
+\item{(d)} $7 \cdot n^5 + n^3 \log^2 n + 2^n$
+\item{(e)} $\log^{9}n + n^3 4^n + n 5^n$
+%
+\end{description}
+
+\end{problem}
+
+%----------------------------
+
+\begin{solution}
+
+\begin{description}
+
+\item{(a)} To find $\Theta$, we have to find $O$ and $\Omega$: 
+\\ O: $f(n) = 3n^3 - 15n^2 + 2n + 4 \leq 3n^3 + 2n^3 + 4n^3 = 9n^3 \implies f(n) = O(n^3)$.
+\\ $\Omega$: $f(n) = 3n^3 - 15n^2 + 2n + 4 \geq 3n^3 - 15n^3 \geq -12n^3 \implies f(n) = \Omega(n^3).$
+\\ Since $f(n) = \Omega(n^3)$ and $f(n) = O(n^3)$, $\mathbf{f(n) = \Theta(n^3)}$.
+
+\item{(b)} Note: $\log^a{n} = O(n^b)$ for $ a,b > 0$
+\\ O: $f(n) = 3n^2\log{n} + 2n^2\sqrt{n} + n^2 \leq 3n^2\sqrt{n} + 2n^2\sqrt{n} + n^2\sqrt{n} = 6n^2\sqrt{n} \implies f(n) = O(n^2\sqrt{n})$.
+\\ $\Omega$: $f(n) = 3n^2\log{n} + 2n^2\sqrt{n} + n^2 \geq 2n^2\sqrt{n} \implies f(n) = \Omega(n^2\sqrt{n})$
+\\ Since $f(n) = \Omega(n^2\sqrt{n})$ and $f(n) = O(n^2\sqrt{n})$, $\mathbf{f(n) = \Theta(n^2\sqrt{n})}$.
+
+\item{(c)} O: $f(n) = n\log^3{n} - 5n + \frac{n^2}{\log{n}}.$ From here, we can multiply by $\frac{\log{n}}{\log{n}}$ to get \\ $f(n) = \frac{1}{\log{n}}(n\log^4{n} - 5n\log{n} + n^2) \leq \frac{1}{\log{n}}(n\cdot n + n^2) = \frac{2n^2}{\log{n}} \implies f(n) = O(\frac{n^2}{\log{n}})$.
+\\$\Omega: f(n) = n\log^3{n} - 5n + \frac{n^2}{\log{n}} \geq \frac{n^2}{\log{n}} - 5n \geq \frac{n^2}{\log{n}} - 5n\frac{n}{\log{n}} = \frac{-4n^2}{\log{n}} \implies f(n) = \Omega(\frac{n^2}{\log{n}})$.
+\\ Since $f(n) = \Omega(\frac{n^2}{\log{n}})$ and $f(n) = O(\frac{n^2}{\log{n}})$, $\mathbf{f(n) = \Theta(\frac{n^2}{\log{n}})}$.
+
+\item{(d)} Note: $n^a = O(2^n)$, for $a > 0$
+\\ O: $f(n) = 7n^5 + n^3 \log^2 n + 2^n \leq 7\cdot 2^n + n^3 \cdot n + 2^n \leq 7\cdot 2^n + 2^n + 2^n = 9\cdot 2^n \implies f(n) = O(2^n)$.
+\\ $\Omega: f(n) = 7n^5 + n^3 \log^2 n + 2^n \geq 2^n \implies f(n) = \Omega (2^n)$   .
+\\ Since $f(n) = \Omega(2^n)$ and $f(n) = O(2^n)$, $\mathbf{f(n) = \Theta(2^n})$.
+
+\item{(e)} Note: $n^a = O(nb^n)$, for constants $ a,b > 0$
+\\ O: $f(n) = \log^{9}n + n^3 4^n + n 5^n \leq n + n^2\cdot n4^n + n5^n \leq n5^n + (\frac{5}{4})^n \cdot n4^n + n5^n = n5^n + n5^n + n5^n \\ = 3n5^n \implies f(n) = O(n5^n)$.
+\\ $\Omega$: $f(n) = \log^{9}n + n^3 4^n + n 5^n \geq n5^n \implies f(n) = \Omega(n5^n)$.
+\\ Since $f(n) = \Omega(n5^n)$ and $f(n) = O(n5^n)$, $\mathbf{f(n) = \Theta(n5^n})$.
+
+
+\end{description}
+
+\end{solution}
+
+\paragraph{Academic integrity declaration.}
+I did this homework individually. That being said, I got a lot of help from the TA (Ezekiel) during office hours.
+
+\end{document}
