@@ -1,0 +1,113 @@
+% <--- percent sign starts a comment line in LaTeX
+
+%----------------------------------------------------------
+% This is a sample assignment .tex file. Put your name,
+% assignment number and the due date below, as shown.
+% Before you typeset your own assignment try to preview 
+% and print this one as follows:
+%   1. Save this in a file, say hw.tex
+%   2. do "latex hw"
+%	3. latex will produce a pdf file that should be named hw.pdf.
+%	4. Use any pdf viewer to view the document 
+% ------------------------------------------------------------
+
+\documentclass[11pt]{article}
+
+\usepackage{fullpage,graphicx,latexsym,picinpar,amsbsy,amsmath,amsfonts}
+
+\input{macros.tex}
+
+\begin{document}
+	
+% v -- YOUR NAME and SID in the braces
+\student{Nathan Ha}{862377326}  
+% v -- YOUR NAME and SID in the braces
+% \student{ name 2 }{sid 2 } 
+% v -- ASSIGNMENT NUMBER in the braces
+\assignment{ 2 } 
+% v-- DUE DATE in the braces
+\duedate{February 5 }  
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lineacross
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem} % problem 1
+	\vspace{0.05in}
+    \noindent  Prove the following statement: 
+    
+    
+    \noindent 
+    If $p > 5$ and $gcd(p, 20) = 1$,
+    then $(p^2 -21)(p^2 +16)\equiv 0 \pmod{20}$.
+    
+    \vspace{0.1in}
+    \noindent  
+    \emph{Hint:} 
+    The product of any $k$ consecutive integers is divisible by $k$.
+
+\end{problem}
+
+%---------------------------
+
+\begin{solution} % solution 1
+	SOLUTION 1 GOES HERE
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}
+	PROBLEM 2 GOES HERE
+\end{problem}
+
+%-----------------------------
+
+\begin{solution}
+	SOLUTION 2 GOES HERE
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem} % problem 3
+ 	
+
+    \medskip\noindent
+    (a) Compute $5^{1627}\pmod{12}$. Show your work.
+    
+    \medskip\noindent
+    (b) Compute $8^{-1}\pmod{17}$ by listing the multiples. Show your work.
+    
+    \medskip\noindent
+    (c) Compute $8^{-1}\pmod{17}$ using Fermat's Little Theorem. Show your work.
+    
+    \medskip\noindent
+    (d) Compute $8^{-11}\pmod{17}$ using Fermat's Little Theorem. Show your work.
+    
+    \medskip\noindent
+    (e) Find an integer $x$, $0\le x \le 40$, that satisfies the following congruence:
+    $31x + 54 \equiv 16 \pmod{41}$. Show your work. You should not use brute force approach.
+    
+
+\end{problem}
+
+%----------------------------
+
+\begin{solution} % solution 3
+
+    \medskip\noindent
+    (a) $5^{1627}\pmod{12} \equiv 5\cdot (5^2)^{813}\pmod{12} \equiv 5\cdot (25)^{813}\pmod{12} \equiv 5\cdot (1)^{813}\pmod{12} \equiv 5\pmod{12}.$
+
+    \medskip\noindent
+    (b) $8^{-1}\pmod{17} \implies 8a \equiv 1\pmod{17} \implies 8a = 17b + 1$.
+    We need to find an $a$ to make this equation true.
+    \\Multiples of $8$: $8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120$
+    \\Multiples of 17 (and then +1): $18, 35, 52, 69, 86, 103, 120$
+    \\ We can see that the equation is true when $a=15$ and $b=7$. This means that $8^{-1}\pmod{17} \equiv 15$.    
+    
+\end{solution}
+
+\end{document}

@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts, hyperref}
+
+\input{macros.tex}
+
+\begin{document}
+
+\centerline{\large \bf CS111 W'24 ASSIGNMENT 2}
+
+\vskip 0.2in
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}
+
+\vspace{0.05in}
+\noindent  Prove the following statement: 
+
+
+\noindent 
+If $p > 5$ and $gcd(p, 20) = 1$,
+then $(p^2 -21)(p^2 +16)\equiv 0 \pmod{20}$.
+
+\vspace{0.1in}
+\noindent  
+\emph{Hint:} 
+The product of any $k$ consecutive integers is divisible by $k$.
+
+
+
+\end{problem}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.05in}
+\begin{problem}
+
+\vspace{0.05in}
+\noindent  Alice's RSA public key is $P = (e,n) = (7, 4453)$.
+Bob sends Alice the message by encoding it as follows.
+First he assigns numbers to characters:
+A is 8, B is 9, ..., Z is 33, a blank is 34, quotation marks: 35, a coma:  36, a period: 37, an apostrophe: 38. Then he uses RSA to encode each number separately. 
+
+\vspace{0.1in}
+\noindent Bob's encoded message is:
+
+\begin{verbatim}
+
+ 1400 2218   99 2088 4191   84  843   99 4191 3780  764 4191 2979 2269   99  764 
+ 2218 2269 2088  843 3015   99 2970 1443 1655   99 3237 2979   99  447 1443 3237 
+ 1032 2382  871  843 1655   99  871 1443   99 4242  843   99 4191 2269   99  843 
+ 4191 2269 2979   99  871 1443   99 2382 2269  843   99 4191 2269   99 3237 2979 
+   99  871  843 3780  843 1032 2088 1443 2962  843 2916   99 3237 2979   99  764 
+ 2218 2269 2088   99 2088 4191 2269   99  447 1443 3237  843   99  871 1655 2382 
+  843   99 4242  843  447 4191 2382 2269  843   99 2218   99  447 4191 2962   99
+ 2962 1443   99 3780 1443 2962 1294  843 1655   99 2970 2218 1294 2382 1655  843 
+   99 1443 2382  871   99 2088 1443  764   99  871 1443   99 2382 2269  843   99 
+ 3237 2979   99  871  843 3780  843 1032 2088 1443 2962  843 2916 1400
+
+\end{verbatim}
+
+\vspace{-0.1in}
+\noindent Decode Bob's message.
+Notice that you only know Alice's public key, but don't know the private key. So you
+need to "break" RSA to decrypt Bob's message. For the solution, you need to provide the following:
+%
+\begin{description}
+
+	\item (a) Describe step by step how you 
+	arrived at the solution: show how to find $p$ and $q$, $\phi(n)$ and $d$. 
+	\item (b) Show your work for one integer in the message (M = 2218):  the expression, the decrypted integer, the character that it is mapped to.  
+    \item (c) To decode the remaining numbers, you need to write a program in C++ (see below), test it in Gradescope, and append the code to HW 2, Problem 2 solutions.   
+	\item (d) Give the decoded message (in integers).
+	\item (e) Give Bob's message in
+	plaintext. What does it mean and who said it?
+
+\end{description}
+
+\vspace{0.2in}
+\noindent For part (c). Your program should :
+\begin{description}
+
+	\item (i) Take three integers, $e$, $n$ (the public key for RSA), and $m$ (the number of characters in the message) as input to your program. Next, input the ciphertext.
+	\item (ii) Test whether the public key is valid. If not, output a single line ``Public key is not valid!'' and quit the program.
+	\item (iv) If the public key is valid, decode the message.
+	\item (v) Output $p$ and $q$, $\phi(n)$ and $d$.
+	\item (vi) On a new line, output the decoded message in integers.
+	\item (vii) On a new line, output the decoded message in English. The characters should be all uppercase. You can assume that the numbers will be assigned to characters according to the mapping above.
+ 
+\end{description}
+
+\noindent More information and specifications will be provided separately.
+
+\vspace{0.2in}
+\noindent Upload your code to Gradescope to test. There will be 15-16 (open and hidden) test cases.  Your score for the RSA code will be based on the score that you received in Gradescope. If you have any questions, post them on Slack.
+
+
+\end{problem}
+\vspace{0.2in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{problem}
+
+\medskip\noindent
+(a) Compute $5^{1627}\pmod{12}$. Show your work.
+
+\medskip\noindent
+(b) Compute $8^{-1}\pmod{17}$ by listing the multiples. Show your work.
+
+\medskip\noindent
+(c) Compute $8^{-1}\pmod{17}$ using Fermat's Little Theorem. Show your work.
+
+\medskip\noindent
+(d) Compute $8^{-11}\pmod{17}$ using Fermat's Little Theorem. Show your work.
+
+\medskip\noindent
+(e) Find an integer $x$, $0\le x \le 40$, that satisfies the following congruence:
+$31x + 54 \equiv 16 \pmod{41}$. Show your work. You should not use brute force approach.
+
+
+\end{problem}
+
+
+
+\paragraph{Academic integrity declaration.}
+The homework papers must include at the end an academic integrity declaration. This should be a brief paragraph where you state
+\emph{in your own words}  (1) whether you did the homework individually or in collaboration with a partner student (if so, provide the name), 
+and (2) whether you used any external help or resources. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.1in
+\paragraph{Submission.}
+To submit the homework, you need to upload the pdf and cpp files to Gradescope. If you submit with a partner, you need
+to put two names on the assignment and submit it as a group assignment.
+
+\paragraph{Reminders.}
+Remember that only {\LaTeX} papers are accepted. 
+
+\end{document} 
+
