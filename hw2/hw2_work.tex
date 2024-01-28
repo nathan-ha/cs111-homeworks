@@ -95,7 +95,7 @@
 \end{problem}
 
 %----------------------------
-
+\pagebreak
 \begin{solution} % solution 3
 
     \medskip\noindent
@@ -113,7 +113,7 @@
         \\ We can see that the equation is true when $a=15$ and $b=7$. This means that $8^{-1}\pmod{17} \equiv 15$.  
     
     \medskip\noindent
-    (c) Accodring to Fermat's Little Theorem, $a^{p-1} \equiv 1\pmod{p}$, 
+    (c) According to Fermat's Little Theorem, $a^{p-1} \equiv 1\pmod{p}$, 
         where p is prime. Since $8^{-1}\pmod{17}$, 
         and 17 is prime, then $8x \equiv 1\pmod{17}$, for some a.
         By Fermat's Little Theorem, 
@@ -133,6 +133,37 @@
         \\ \equiv 15 \pmod{17}
         $. 
         \\ Therefore, $8^{-1}\pmod{17} = 15$.
+
+    \medskip\noindent
+    (d) $8^{-11}\pmod{17}$ is the same 
+        as $(8^{-1})^{11}\pmod{17}$.
+        we know that, by the result 
+        found in parts b and c,
+        that $8^{-1}\pmod{17} = 15$.
+        This means that
+        $(8^{-1})^{11}
+        \equiv 15^{11} \pmod{17}$. 
+        From here, since we want to use Fermat's 
+        Little Theorem, we should multiply by 
+        $(8^5)(8^{-1})^{5} \equiv (8^5)(15)^{5} 
+        \equiv 1\pmod{17}$.
+        We know this to be true because of the properties
+        of inverses. We now have
+        $8^5(15^5)(15^{11})
+        \\\equiv 8^5(15)^{16}\pmod{17}$. By Fermat's 
+        Little Theorem (as stated in part c),
+        we can substitute $15^{16}$ with $1$: 
+        $8^5(15)^{16}\pmod{17} 
+        \equiv 8^5\pmod{17}$. Now, we can simplify
+        by squaring:
+        \\ $8^5 \equiv 8 \cdot 64^2\pmod{17}
+        \\ \equiv 8 \cdot 13^2\pmod{17}
+        \\ \equiv 8 \cdot 169\pmod{17}
+        \\ \equiv 8 \cdot 16\pmod{17}
+        \\ \equiv 128\pmod{17}
+        \\ \equiv 9\pmod{17}
+        $.
+
     
     
     
