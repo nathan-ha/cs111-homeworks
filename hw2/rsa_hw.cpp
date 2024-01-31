@@ -1,5 +1,5 @@
 #include <iostream>
-#include <algorithm> 
+#include <algorithm>
 using namespace std;
 
 int solve_for_p(int n);           // finds a divisor of n
@@ -9,8 +9,8 @@ char int_to_char(int m);          // converts numbers to characters as specified
 
 int main()
 {
-    int e = 0;
-    int n = 0;
+    int e = 0; // 7
+    int n = 0; // 4453
     int char_count = 0;
     cin >> e >> n >> char_count;
 
@@ -23,7 +23,8 @@ int main()
     int d = mod_inv(e, phi); // 3703
 
     // test public key validity
-    if (__gcd(e, phi) != 1) {
+    if (__gcd(e, phi) != 1)
+    {
         cout << "Public key is not valid!\n";
         return 1;
     }
@@ -40,7 +41,6 @@ int main()
         message += int_to_char(decrypted_data);
     }
     cout << message << endl;
-    
 }
 
 int solve_for_p(int n)
@@ -126,7 +126,8 @@ char int_to_char(int m)
         return '\'';
         break;
     default:
-        return static_cast<char>(m + 'A' - 8);
+        char letter = static_cast<char>(m + 'A' - 8);
+        return letter;
         break;
     }
 }
