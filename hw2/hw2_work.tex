@@ -156,7 +156,28 @@ need to "break" RSA to decrypt Bob's message. For the solution, you need to prov
 %-----------------------------
 % solution 2
 \begin{solution}
-	SOLUTION 2 GOES HERE
+    \\\medskip\noindent
+    (a) \\
+        In order to break the RSA, we first have to find p and q. 
+        Since n is a relatively small value, we can brute force its
+        divisors. Using brute force, we can find p, and then
+        $q = \frac{n}{p}$.
+        We find that $(p,q) = (61,73)$. Now that we have p and q, 
+        we can calculate $\phi(n)=\phi(p)\phi(q)=(p-1)(q-1) = 4320$.
+        At this point, we have everything we need to get the private
+        key. We just need to find \\$d = e^{-1}\pmod{\phi(n)}$. There
+        are several ways to compute this inverse, but I just did it
+        by listing multiples. Now that we have d, we just need to raise
+        the encrypted message to the power of p, modulo n
+        $\implies d = 3703$.
+        Even though the exponent is huge, we can just simplify it by
+        squaring. Once you simplify it, you will get the integer that
+        corresponds to the message.
+    
+    \medskip\noindent
+    (b) \\
+
+
 \end{solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
