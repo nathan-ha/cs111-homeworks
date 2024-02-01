@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+
 using namespace std;
 
 /*
@@ -25,6 +26,7 @@ int solve_for_p(int n);           // finds a divisor of n
 int mod_inv(int e, int n);        // calculates modular inverse (e^-1 (mod n)) by listing multiples
 int pow_mod(int m, int d, int n); // calculates M^d % n
 char int_to_char(int m);          // converts numbers to characters as specified by the homework
+bool is_prime(int p);             // checks if number is prime, works for small numbers
 
 int main()
 {
@@ -34,7 +36,8 @@ int main()
     cin >> e >> n >> char_count;
     vector<int> data;
     // get message
-    for (int i = 0; i < char_count; i++) {
+    for (int i = 0; i < char_count; i++)
+    {
         int temp_msg = 0;
         cin >> temp_msg;
         data.push_back(temp_msg);
@@ -45,8 +48,9 @@ int main()
     int q = n / p;          // 73
     // find phi
     int phi = (p - 1) * (q - 1); // 4320
-    // test public key validity
-    if (__gcd(e, phi) != 1)
+    // test public key validity:
+    // e and phi(n) are coprime, n has two prime divisors
+    if (__gcd(e, phi) != 1 or !is_prime(p) or !is_prime(q) or p == q)
     {
         cout << "Public key is not valid!";
         return 1;
@@ -54,9 +58,9 @@ int main()
     // find d
     int d = mod_inv(e, phi); // 3703
 
-
     // decrypt message
-    for (auto& current_letter : data) {
+    for (auto &current_letter : data)
+    {
         int decrypted_data = pow_mod(current_letter, d, n);
         current_letter = decrypted_data;
     }
@@ -65,19 +69,20 @@ int main()
     cout //<< endl
         << p << ' '
         << q << ' '
-        << phi  << ' '
+        << phi << ' '
         << d << endl;
     // print decrypted message in integers
-    for (auto& current_letter : data) {
+    for (auto &current_letter : data)
+    {
         cout << current_letter << ' ';
     }
     cout << endl;
     // printed decryped message in English
-    for (auto& current_letter : data) {
+    for (auto &current_letter : data)
+    {
         cout << int_to_char(current_letter);
     }
     // cout << endl;
-
 
     // string message;
     // string message_ints;
@@ -181,5 +186,17 @@ char int_to_char(int m)
         char letter = static_cast<char>(m + 'A' - 7);
         return letter;
         break;
+    }
+}
+
+bool is_prime(int p)
+{
+    for (int i = 2; i < p; i++)
+    {
+        if (p % i == 0)
+        {
+            return false;
+        }
+        return true;
     }
 }
