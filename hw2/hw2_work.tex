@@ -155,6 +155,7 @@ need to "break" RSA to decrypt Bob's message. For the solution, you need to prov
 
 %-----------------------------
 % solution 2
+\pagebreak
 \begin{solution}
     \\\medskip\noindent
     (a) \\
@@ -175,7 +176,43 @@ need to "break" RSA to decrypt Bob's message. For the solution, you need to prov
         corresponds to the message.
     
     \medskip\noindent
-    (b) \\
+    (b)\\ To decode 2218, we will raise it to the power
+    of d (which we found to be 3703), modulo n. 
+    We can then simplify it by squaring:\\
+    $
+    2218^{3703} \equiv 2218(2218)^{1851}\pmod{4453}
+    \\ \equiv  2218(4919524)^{1851}\pmod{4453}
+    \\ \equiv 2218(3412)^{1851}\pmod{4453}
+    \\ \vdots
+    \\ \equiv 266 (3249)^3\pmod{4453}
+    \\ \equiv 266 (3249)(3249^2)\pmod{4453}
+    \\ \equiv 352 \cdot 2391 \pmod{4453}
+    \\ \equiv 15 \pmod{4453}
+    $.
+    Now we have that the decoded message is 15. According
+    to the character assignments, 15 is the letter 'I'.
+
+    \medskip\noindent
+    (c) \\The code for main is on the last page. 
+    I didn't include the other functions that I wrote
+    because they took up too much space, but they are
+    on gradescope.
+
+    \medskip\noindent
+    (d) \\The decoded message in integers:\\
+    34 15 33 14 7 28 11 33 7 18 29 7 31 25 33 29 15 25 14 11 10 33 12 21 24 33 19 31 33 9 21 19 22 27 26 11 24 33 26 21 33 8 11 33 7 25 33
+    11 7 25 31 33 26 21 33 27 25 11 33 7 25 33 19 31 33 26 11 18 11 22 14 21 20 11 36 33 19 31 33 29 15 25 14 33 14 7 25 33 9 21 19 11 33 2
+    6 24 27 11 33 8 11 9 7 27 25 11 33 15 33 9 7 20 33 20 21 33 18 21 20 13 11 24 33 12 15 13 27 24 11 33 21 27 26 33 14 21 29 33 26 21 33
+    27 25 11 33 19 31 33 26 11 18 11 22 14 21 20 11 36 34
+
+    \medskip\noindent
+    (e) \\In plaintext, the message is:\\
+    "I HAVE ALWAYS WISHED FOR MY COMPUTER TO BE AS EASY TO USE AS MY TELEPHONE. 
+    MY WISH HAS COME TRUE BECAUSE I CAN NO LONGER FIGURE OUT 
+    HOW TO USE MY TELEPHONE." This is a quote by Bjarne Stroustrup creator of C++.
+    He is talking about the fact that technology has gotten so advanced so quickly.
+
+
 
 
 \end{solution}
@@ -295,11 +332,58 @@ need to "break" RSA to decrypt Bob's message. For the solution, you need to prov
         \implies x \equiv 4 \cdot 3 \pmod{41}
         \equiv 12 \pmod{41}
         $. Therefore, $x=12$.
-
-
-    
-    
-    
 \end{solution}
+
+\paragraph{Academic integrity declaration.} 
+I did this homework by myself. I got help from the professor
+and the TA during office hours, though.
+
+\pagebreak
+\begin{verbatim}
+    int main()
+    {
+        int e = 7;
+        int n = 4453;
+        int char_count = 158;
+        cin >> e >> n >> char_count;
+        vector<int> data;
+        // get message
+        for (int i = 0; i < char_count; i++) {
+            int temp_msg = 0;
+            cin >> temp_msg;
+            data.push_back(temp_msg);
+        }
+        // find p,q
+        int p = solve_for_p(n); // 61
+        int q = n / p;          // 73
+        // find phi
+        int phi = (p - 1) * (q - 1); // 4320
+        // test public key validity:
+        // e and phi(n) are coprime, n has two prime divisors
+        if (__gcd(e, phi) != 1 or !is_prime(p) or !is_prime(q) or p == q) {
+            cout << "Public key is not valid!";
+            return 1;
+        }
+        // find d
+        int d = mod_inv(e, phi); // 3703
+        // decrypt message
+        for (auto &current_letter : data) {
+            int decrypted_data = pow_mod(current_letter, d, n);
+            current_letter = decrypted_data;
+        }
+        // Output p and q, phi(n) and d
+        cout //<< endl << p << ' ' << q << ' '<< phi << ' '<< d << endl;
+        // print decrypted message in integers
+        for (auto &current_letter : data) {
+            cout << current_letter << ' ';
+        }
+        cout << endl;
+        // printed decryped message in English
+        for (auto &current_letter : data) {
+            cout << int_to_char(current_letter);
+        }
+    }
+\end{verbatim}
+
 
 \end{document}

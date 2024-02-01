@@ -197,6 +197,6 @@ bool is_prime(int p)
         {
             return false;
         }
-        return true;
     }
+    return true;
 }
