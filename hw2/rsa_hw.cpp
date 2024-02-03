@@ -82,22 +82,6 @@ int main()
     {
         cout << int_to_char(current_letter);
     }
-    // cout << endl;
-
-    // string message;
-    // string message_ints;
-    // for (int i = 0; i < char_count; i++)
-    // {
-    //     int encrypted_data = 0;
-    //     cin >> encrypted_data;
-    //     // calculate M^d
-    //     int decrypted_data = pow_mod(encrypted_data, d, n);
-    //     message_ints += to_string(decrypted_data) + ' ';
-    //     message += int_to_char(decrypted_data);
-    // }
-
-    // cout << message_ints << endl;
-    // cout << message << endl;
 }
 
 int solve_for_p(int n)
