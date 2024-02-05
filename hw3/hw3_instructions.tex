@@ -1,0 +1,102 @@
+\documentclass{article}
+
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts,graphicx}
+
+\input{macros.tex}
+
+\begin{document}
+
+\centerline{\large \bf CS 111 ASSIGNMENT 3 }
+
+
+\vskip 0.2in
+
+
+\vskip 0.1in
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}
+\noindent a) Consider the following linear homogeneous recurrence relation: $R_n = 4R_{n-1} - 3R_{n-2}$. It is known that: $R_0 = 1$, $R_2 = 5$. Find $R_3$.
+
+\vspace {0.1in}
+\noindent b) Determine the general solution of the recurrence  equation if its characteristic equation has the following roots:  1, -2, -2, 2, 7, 7.
+
+\vspace {0.1in}
+\noindent  c) Determine the general solution of the recurrence  equation $A_n = 256A_{n-4}$.
+
+\vspace {0.1in}
+\noindent  d) Find the general form of the particular solution of the recurrence $B_n = 3B_{n-2} - 2B_{n-3}$ + 2.
+
+\end{problem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}
+Solve the following recurrence equations:
+
+%
+$a)$
+\begin{eqnarray*}
+        f_n &=& f_{n-1} + 4f_{n-2} + 2f_{n-3}\\
+        f_0 &=& 0 \\
+        f_1 &=& 1 \\
+		f_2 &=& 4 
+\end{eqnarray*}
+%
+Show your work (all steps: the characteristic polynomial and its roots, the general solution, 
+using the initial conditions to compute the final solution.)
+
+
+$b)$
+\begin{eqnarray*}
+        t_n &=& t_{n-1} + 2t_{n-2} + 2^n\\
+        t_0 &=& 0 \\
+        t_1 &=& 2
+\end{eqnarray*}
+%
+Show your work (all steps: the associated homogeneous equation,
+the characteristic polynomial and its
+roots, the general solution of the homogeneous
+equation, computing a particular solution,
+the general solution of the non-homogeneous equation,
+using the initial conditions to compute the final solution.)
+%
+\end{problem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.1in
+
+\begin{problem}
+We want to tile an $n\times 1$ strip with $1\times 1$ tiles that are green (G), blue (B), and red (R), $2\times 1$ purple (P) and $2\times 1$ orange (O) tiles. Green, blue and purple tiles cannot be next to each other, and there should be no two purple or three blue or green tiles in a row (for ex., GGOBR is allowed, but GGGOBR, GROPP and PBOBR are not). Give a formula for the number of such tilings. Your solution must include a recurrence equation (with initial conditions!), and a full justification. You do not need to solve it. 
+
+
+\end{problem}
+%%%%%%%%%%%%%%%%%%%%
+
+
+\paragraph{Academic integrity declaration.}
+The homework papers must include at the end an academic integrity declaration. This should be a brief paragraph where you state
+\emph{in your own words}  (1) whether you did the homework individually or in collaboration with a partner student (if so, provide the name), 
+and (2) whether you used any external help or resources. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 0.1in
+
+\paragraph{Submission.}
+To submit the homework, you need to upload the pdf file to Gradescope. If you submit with a partner, you need
+to put two names on the assignment and submit it as a group assignment.
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
