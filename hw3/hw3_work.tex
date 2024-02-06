@@ -41,7 +41,7 @@
 % solution 1
 \begin{solution} \\
 	\noindent a) 
-		This linear recurrence has a characteristic equation of $x^2 - 4x + 3 = 0$. This can be factored into $(x-3)(x-1) = 0 \implies x = 1, 3$.
+		This linear recurrence has a characteristic equation of $x^2 - 4x + 3 = 0$. This can be factored into $(x-3)(x-1) = 0 \implies x = 1, 3$. From here, we can write the general solution: \\ $R_n = \alpha_1(1)^n + \alpha_2(3)^n = \alpha_1 + \alpha_2(3)^n$. We can now plug in $R_0$ and $R_2$ to solve for $\alpha$. \\ $R_0 = 1 = \alpha_1 + \alpha_2$. \\ $R_2 = 5 = \alpha_1 + \alpha_2(3)^2$. \\ Solving this system of linear equations, we get $\alpha_{1,2} = \frac{1}{2}$. This means that the closed form for the recurrence is $R_n = \frac{1}{2}(3)^n + \frac{1}{2}$. We can plug in 3 and get $R_3 = \frac{1}{2}(3)^3 + \frac{1}{2} = 14$. 
 \end{solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
