@@ -21,7 +21,7 @@ using namespace std;
 
 note for gradescope tests: lhs is your output
 */
-
+    
 int solve_for_p(int n);           // finds a divisor of n
 int mod_inv(int e, int n);        // calculates modular inverse (e^-1 (mod n)) by listing multiples
 int pow_mod(int m, int d, int n); // calculates M^d % n
