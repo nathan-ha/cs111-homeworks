@@ -100,16 +100,28 @@ using the initial conditions to compute the final solution.)
 \end{solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-% problem 1
+% problem 3
 \newpage
 \begin{problem}
- 	PROBLEM 3 GOES HERE
+	We want to tile an $n\times 1$ strip with $1\times 1$ tiles that are green (G), blue (B), and red (R), $2\times 1$ purple (P) and $2\times 1$ orange (O) tiles. Green, blue and purple tiles cannot be next to each other, and there should be no two purple or three blue or green tiles in a row (for ex., GGOBR is allowed, but GGGOBR, GROPP and PBOBR are not). Give a formula for the number of such tilings. Your solution must include a recurrence equation (with initial conditions!), and a full justification. You do not need to solve it. 
 \end{problem}
 
 %----------------------------
 % solution 3
 \begin{solution}
-	SOLUTION 3 GOES HERE
+	\\
+	Just for reference, note that the following patterns are NOT allowed: GB, BG, GP, PG, BP, PB, PP, BBB, GGG. We now have to break up the tilings into its most basic components. Also, let's say that the number of tilings is $T_n$. \\\\ First, we can look at the easiest cases: inserting an R will give a tile with n-1 possible tilings left. Similarly, inserting an O will give n-2 possible tilings. Since R and O have no restrictions on what they can be next to, we don't have to do anything else with them. \\\\ Now let's look at the next simplest case: inserting a P. Since P cannot be next to a G,P, or B, it must be either next to a R or and O. This will leave you with n-3 and n-4 possible tilings respectively. \\\\ Green and Blue are more complicated, but they both behave the same in terms of the restrictions placed on them. Let's say you insert a G. Since R and O have no restrictions, we can freely place them next to G. Placing an R leaves n-2 possible tilings left, and placing an O will leave n-3 left. If you place a G next to the G, in order to prevent 3 G's in a row, we have to place either a R or an O. Placing them will leave n-3 and n-4 remaining tilings respectively. \\\\ Again, G and B behave exactly the same, so we can just multiply the tilings for the above paragraph by 2. Adding up all the tilings gives
 \end{solution}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.1in
+
+\paragraph{Academic integrity declaration.}
+The homework papers must include at the end an academic integrity declaration. This should be a brief paragraph where you state
+\emph{in your own words}  (1) whether you did the homework individually or in collaboration with a partner student (if so, provide the name), 
+and (2) whether you used any external help or resources. 
+
+
 \end{document}
+
