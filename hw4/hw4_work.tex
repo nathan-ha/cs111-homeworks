@@ -141,7 +141,7 @@ The solutions for all the problems will use the master theorem, so I will just s
 % T(n) = {...
 \[ T(x) = \begin{cases} 
    \Theta(n^{log_b{(a)}}) & a > b^d \\
-   \Theta(n^dlog(a)) & a = b^d \\
+   \Theta(n^dlog(n)) & a = b^d \\
    \Theta(n^d) & a < b^d 
 \end{cases}
 \]
@@ -152,11 +152,11 @@ The solutions for all the problems will use the master theorem, so I will just s
    \\
 	(a) This algorithm can be rewritten as the recurrence: $A(n) = n^3 + 5A(\floor{n/2})$. Applying the master theorem, with $a = 5, b=2, c=1, d=3$. Since $5 < 2^3=8$, $T(n) = \Theta(n^3)$.
    \\\\
-   (b) This algorithm can be rewritten as the recurrence: $B(n) = n^2 + 6B(\floor{n/4}) + 10B(\lceil{n/4}\rceil)$. Since I can't figure out how to justify adding up $6B(\floor{n/4}) + 10B(\lceil{n/4}\rceil)$, I will consider each one separately, and add up the Big-$\Theta$ of each. Let's say $B'(n) $. TODO
+   (b) This algorithm can be rewritten as the recurrence: $B(n) = n^2 + 6B(\floor{n/4}) + 10B(\lceil{n/4}\rceil) = 16B(n/4) + n^2 \implies a=16, b=4, c=1, d=2$. From the master theorem, since $16=4^2$, $B(n) = \Theta(n^2\log(n))$.
    \\\\
-   (c) This algorithm can be rewritten as the recurrence: $C(n) = 4C(\floor{n/3}) + n$. Applying the master theorem, with $a=4, b=3, c=1, d=1 \implies a > b^1 \implies C(n) = \Theta(n)$.
+   (c) This algorithm can be rewritten as the recurrence: $C(n) = 4C(\floor{n/3}) + n$. Applying the master theorem, with $a=4, b=3, c=1, d=1 \implies a > b^1 \implies C(n) = \Theta(n^{\log_3{4}})$.
    \\\\
-   (d) 
+   (d) This algorithm can be rewritten as the recurrence: $D(n) = 2 + 2D(n/5)$. The reason for the $2D(n/5)$ is because there even though there are four recursive calls in the code, only two are executed in any given iteration. Applying the master theorem, with $a=2,b=5,c=2,d=0 \implies a < b^d$, we have $B(n) = \Theta(n^{log_5(2)})$.
 \end{solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,18 +216,50 @@ Show your work.
 	
 
 %----------------------------
-
+% solution 3
 \begin{solution}
-   \\
-	Let's say that the number of Computer Science awards is C,  biology is B, and political science and history is P. We know that there are a total of 45 students, so $C + B + P = 45$. There are at least 8 CS awards, so $C \geq 8$, and there will be at most 8 biology majors, so $B \leq 8$. The number of political science students will be between 5 and 12, so $5 \leq P \leq 12 \implies P' \leq 7$. We can condense these conditions into $C \geq 8 \land B \leq 8 \land P' \leq 7$. Let the number of possible number of lists of awardees be S($C \geq 8 \land B \leq 8 \land P' \leq 7$), and S() be the number of lists with no restrictions. To find the number of valid lists, we can take the number of lists with no restrictions and subtract the number of invalid lists: $S() - S(C \leq 7 \lor B \geq 9 \lor P' \geq 8)$. According to the theorem regarding integer partitions, we know that $S() = {45 + 3 - 1 \choose 3 - 1} = 1081$. To break up the second term, we have to use the inclusion exclusion principle: 
+   Let's say that the number of CS awards is C, biology is B, political science is P, history is H. We can express the conditions as:
    \\
    $
-   S(C \leq 7 \lor B \geq 9 \lor P' \geq 8) = 
-   \\
-   S(C\leq7) + S(B\geq9) + S(P'\geq8) - S(C\leq7 \land B\geq9) - S(C\leq7 \land  P'\geq 8)
-   \\ 
-   - S(P'\geq 8 \land B\geq9) + S(C \leq 7 \land B \geq 9 \land P' \geq 8)
+      C \geq 8 \\
+      B \leq 8 \\
+      5 \leq P, Q, \leq 12 \implies 0 \leq P', Q' \leq 7 \\
+      C + B + P + H = 45
    $
+   \\\\
+   We can substitute $B' = B - 5$ and $P' = P - 5$ into the sum. Also, since C has no restrictions on the upper bound, we can kind of ignore it for now. We can now write:
+   \\
+   $B + P' + H' = 27$.
+   \\\\
+   We can also let the number of partitions that fit these conditions be the total number of partitions $(S())$ minus the number of invalid partitions:
+   \\
+   $
+      S(B \leq 8 \wedge P'\leq 7 \wedge H' \leq 7) 
+      \\= S() - S(B \geq 9 \lor P' \geq 8 \lor H' \geq 8)
+   $.
+   \\\\
+   We know that the total number of partitions, 
+   \\
+   S() = ${m + k - 1 \choose k - 1}, m=27, k=4 \implies S() = {30 \choose 3} = 4060$.
+   \\\\
+   We can also calculate the number of invalid partitions using the inclusion-exclusion principle. Also that the number of partitions with conditions is ${m - A + k - 1 \choose k - 1}$, where A is the sum of the lower bounds.
+   \\
+   $
+      S(B \geq 9 \lor P' \geq 8 \lor H' \geq 8) = 
+      \\S(B \geq 9) + S(P' \geq 8) + S(H' \geq 8) \\
+      - S(B \geq 9 \land P' \geq 8)
+      - S(B \geq 9 \land P' \geq 8)
+      - S(B \geq 8 \land P' \geq 8)\\
+      + S(B \geq 9 \land P' \geq 8 \land H' \geq 8)
+      \\\\={27 - 9 + 4 - 1 \choose 4 - 1} + 2{27 - 8 + 4 - 1 \choose 4 - 1}
+      \\-2{27 - (9+8) + 4 - 1 \choose 4 - 1} - {27 - (8+8) + 4 - 1 \choose 4 - 1} - {27 - (9+8+8) + 4 - 1 \choose 4 - 1}
+      \\=1330 + 1540 + 1540 - 286 - 286 - 364 + 10 = 3484
+   $.
+   \\
+   Subtracting the total with the number of invalid partitions, we get $4060 - 3484 = 576$.
+
+
+
 
 \end{solution}
 
