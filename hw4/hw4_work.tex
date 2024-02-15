@@ -135,9 +135,28 @@ In part~(d), variable $x$ is a global variable initialized to $1$.
 \end{problem}
 
 %---------------------------
+% solution 1
+\text{}\\
+The solutions for all the problems will use the master theorem, so I will just state it here. Let $a \geq 1, b > 1, c > 0$ and $d \geq 0$. If $T(n)$ satisfies the recurrence $T(n) = aT(n/b) + cn^d$.
+% T(n) = {...
+\[ T(x) = \begin{cases} 
+   \Theta(n^{log_b{(a)}}) & a > b^d \\
+   \Theta(n^dlog(a)) & a = b^d \\
+   \Theta(n^d) & a < b^d 
+\end{cases}
+\]
+
+\newpage
 
 \begin{solution}
-	SOLUTION 1 GOES HERE
+   \\
+	(a) This algorithm can be rewritten as the recurrence: $A(n) = n^3 + 5A(\floor{n/2})$. Applying the master theorem, with $a = 5, b=2, c=1, d=3$. Since $5 < 2^3=8$, $T(n) = \Theta(n^3)$.
+   \\\\
+   (b) This algorithm can be rewritten as the recurrence: $B(n) = n^2 + 6B(\floor{n/4}) + 10B(\lceil{n/4}\rceil)$. Since I can't figure out how to justify adding up $6B(\floor{n/4}) + 10B(\lceil{n/4}\rceil)$, I will consider each one separately, and add up the Big-$\Theta$ of each. Let's say $B'(n) $. TODO
+   \\\\
+   (c) This algorithm can be rewritten as the recurrence: $C(n) = 4C(\floor{n/3}) + n$. Applying the master theorem, with $a=4, b=3, c=1, d=1 \implies a > b^1 \implies C(n) = \Theta(n)$.
+   \\\\
+   (d) 
 \end{solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -173,7 +192,16 @@ Show your work.
 %-----------------------------
 
 \begin{solution}
-	SOLUTION 2 GOES HERE
+	According to the inclusion exclusion principle, we have: \\ $|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$.
+   \\
+   We can substitute the values from (b), (c), (d) into the principle:
+   \\
+   $129 = |A| + |B| + |C| - 18 - 20 - 24 + 11 \implies |A| + |B| + |C| = 180$. To solve this, we want to put everything in terms of a single variable. From (a), we know the relationships between the three variables. I will choose to express everything in terms of $|A|$. Plugging this in, we get 
+   \\ 
+   $|A| +  2|A| + 3|A| = 180 \implies |A| = 30$. 
+   \\ 
+   From (a), we can find the rest of the values: $|B| = 60, |C| = 90$.
+
 \end{solution}
 
 % PROBLEM 3
@@ -190,7 +218,17 @@ Show your work.
 %----------------------------
 
 \begin{solution}
-	SOLUTION 3 GOES HERE
+   \\
+	Let's say that the number of Computer Science awards is C,  biology is B, and political science and history is P. We know that there are a total of 45 students, so $C + B + P = 45$. There are at least 8 CS awards, so $C \geq 8$, and there will be at most 8 biology majors, so $B \leq 8$. The number of political science students will be between 5 and 12, so $5 \leq P \leq 12 \implies P' \leq 7$. We can condense these conditions into $C \geq 8 \land B \leq 8 \land P' \leq 7$. Let the number of possible number of lists of awardees be S($C \geq 8 \land B \leq 8 \land P' \leq 7$), and S() be the number of lists with no restrictions. To find the number of valid lists, we can take the number of lists with no restrictions and subtract the number of invalid lists: $S() - S(C \leq 7 \lor B \geq 9 \lor P' \geq 8)$. According to the theorem regarding integer partitions, we know that $S() = {45 + 3 - 1 \choose 3 - 1} = 1081$. To break up the second term, we have to use the inclusion exclusion principle: 
+   \\
+   $
+   S(C \leq 7 \lor B \geq 9 \lor P' \geq 8) = 
+   \\
+   S(C\leq7) + S(B\geq9) + S(P'\geq8) - S(C\leq7 \land B\geq9) - S(C\leq7 \land  P'\geq 8)
+   \\ 
+   - S(P'\geq 8 \land B\geq9) + S(C \leq 7 \land B \geq 9 \land P' \geq 8)
+   $
+
 \end{solution}
 
 
