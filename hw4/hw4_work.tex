@@ -150,13 +150,13 @@ The solutions for all the problems will use the master theorem, so I will just s
 
 \begin{solution}
    \\
-	(a) This algorithm can be rewritten as the recurrence: $A(n) = n^3 + 5A(\floor{n/2})$. Applying the master theorem, with $a = 5, b=2, c=1, d=3$. Since $5 < 2^3=8$, $T(n) = \Theta(n^3)$.
+	(a) This algorithm can be rewritten as the recurrence: $A(n) = n^3 + 5A(\floor{n/2})$. Applying the master theorem, with $a = 5, b=2, c=1, d=3$. Since $a < b^d$, $T(n) = \Theta(n^3)$.
    \\\\
-   (b) This algorithm can be rewritten as the recurrence: $B(n) = n^2 + 6B(\floor{n/4}) + 10B(\lceil{n/4}\rceil) = 16B(n/4) + n^2 \implies a=16, b=4, c=1, d=2$. From the master theorem, since $16=4^2$, $B(n) = \Theta(n^2\log(n))$.
+   (b) This algorithm can be rewritten as the recurrence: $B(n) = n^2 + 6B(\floor{n/4}) + 10B(\lceil{n/4}\rceil) = 16B(n/4) + n^2 \implies a=16, b=4, c=1, d=2$. From the master theorem, since $a=b^d$, $B(n) = \Theta(n^2\log(n))$.
    \\\\
-   (c) This algorithm can be rewritten as the recurrence: $C(n) = 4C(\floor{n/3}) + n$. Applying the master theorem, with $a=4, b=3, c=1, d=1 \implies a > b^1 \implies C(n) = \Theta(n^{\log_3{4}})$.
+   (c) This algorithm can be rewritten as the recurrence: $C(n) = 4C(\floor{n/3}) + n$. Applying the master theorem, with $a=4, b=3, c=1, d=1 \implies a > b^d \implies C(n) = \Theta(n^{\log_3{4}})$.
    \\\\
-   (d) This algorithm can be rewritten as the recurrence: $D(n) = 2 + 2D(n/5)$. The reason for the $2D(n/5)$ is because there even though there are four recursive calls in the code, only two are executed in any given iteration. Applying the master theorem, with $a=2,b=5,c=2,d=0 \implies a < b^d$, we have $B(n) = \Theta(n^{log_5(2)})$.
+   (d) This algorithm can be rewritten as the recurrence: $D(n) = 2 + 2D(n/5)$. The reason for the $2D(n/5)$ is because there even though there are four recursive calls in the code, only two are executed in any given iteration. Applying the master theorem, with $a=2,b=5,c=2,d=0 \implies a > b^d$, we have $B(n) = \Theta(n^{log_5(2)})$.
 \end{solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,8 +199,6 @@ Show your work.
    $129 = |A| + |B| + |C| - 18 - 20 - 24 + 11 \implies |A| + |B| + |C| = 180$. To solve this, we want to put everything in terms of a single variable. From (a), we know the relationships between the three variables. I will choose to express everything in terms of $|A|$. Plugging this in, we get 
    \\ 
    $|A| +  2|A| + 3|A| = 180 \implies |A| = 30$. 
-   \\ 
-   From (a), we can find the rest of the values: $|B| = 60, |C| = 90$.
 
 \end{solution}
 
@@ -223,11 +221,11 @@ Show your work.
    $
       C \geq 8 \\
       B \leq 8 \\
-      5 \leq P, Q, \leq 12 \implies 0 \leq P', Q' \leq 7 \\
+      5 \leq P, H, \leq 12 \\
       C + B + P + H = 45
    $
    \\\\
-   We can substitute $B' = B - 5$ and $P' = P - 5$ into the sum. Also, since C has no restrictions on the upper bound, we can kind of ignore it for now. We can now write:
+   We can substitute $B' = B - 5$ and $P' = P - 5$  $(0 \leq P', H' \leq 7)$ into the sum. Also, since C has no restrictions on the upper bound, we can kind of exclude it for now\footnote[1]{As you may notice, later on when we finding the number of integer partitions, we choose k=4, which includes C. So how could we account for C in k, yet exclude it in m? This is because we are essentially setting aside 8 slots for C (which is why we subtract 8 from 45), and then seeing how many integer partitions exist. Due to the way the partition formula works, there's no reason that $B + P' + H'$ cannot actually add up to less than 27. This is because we are assuming there is a fourth group (C) that will fill that void.} (and subtract 8). We can now write:
    \\
    $B + P' + H' = 27$.
    \\\\
@@ -235,14 +233,16 @@ Show your work.
    \\
    $
       S(B \leq 8 \wedge P'\leq 7 \wedge H' \leq 7) 
-      \\= S() - S(B \geq 9 \lor P' \geq 8 \lor H' \geq 8)
+      \\= S() - S(B \geq 9 \lor P' \geq 8 \lor H' \geq 8) 
    $.
    \\\\
    We know that the total number of partitions, 
    \\
    S() = ${m + k - 1 \choose k - 1}, m=27, k=4 \implies S() = {30 \choose 3} = 4060$.
+   \\
+   m is the total number of awards, and k is the number of groups.
    \\\\
-   We can also calculate the number of invalid partitions using the inclusion-exclusion principle. Also that the number of partitions with conditions is ${m - A + k - 1 \choose k - 1}$, where A is the sum of the lower bounds.
+   We can also calculate the number of invalid partitions using the inclusion-exclusion principle. Also, the number of partitions with conditions is ${m - A + k - 1 \choose k - 1}$, where A is the sum of the lower bounds.
    \\
    $
       S(B \geq 9 \lor P' \geq 8 \lor H' \geq 8) = 
@@ -251,8 +251,9 @@ Show your work.
       - S(B \geq 9 \land P' \geq 8)
       - S(B \geq 8 \land P' \geq 8)\\
       + S(B \geq 9 \land P' \geq 8 \land H' \geq 8)
-      \\\\={27 - 9 + 4 - 1 \choose 4 - 1} + 2{27 - 8 + 4 - 1 \choose 4 - 1}
-      \\-2{27 - (9+8) + 4 - 1 \choose 4 - 1} - {27 - (8+8) + 4 - 1 \choose 4 - 1} - {27 - (9+8+8) + 4 - 1 \choose 4 - 1}
+      \\\\={27 - 9 + 4 - 1 \choose 4 - 1} + {27 - 8 + 4 - 1 \choose 4 - 1} + {27 - 8 + 4 - 1 \choose 4 - 1}
+      \\-{27 - (9+8) + 4 - 1 \choose 4 - 1} -{27 - (9+8) + 4 - 1 \choose 4 - 1} - {27 - (8+8) + 4 - 1 \choose 4 - 1} - {27 - (9+8+8) + 4 - 1 \choose 4 - 1} 
+      \\ + {27 -(8+8+9) + 4-1 \choose 4-1}
       \\=1330 + 1540 + 1540 - 286 - 286 - 364 + 10 = 3484
    $.
    \\
