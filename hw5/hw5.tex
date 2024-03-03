@@ -1,0 +1,134 @@
+
+\documentclass{article}
+
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts,graphicx}
+
+\input{macros.tex}
+\newcommand{\hwduedate}{{}}
+
+\begin{document}
+
+\centerline{\large \bf CS111 ASSIGNMENT 5}
+
+\vskip 0.25in
+
+%%%%%%%%%%%%%%%%
+% problem 1
+
+\begin{problem}
+Determine whether the two graphs below are planar or not.
+To show planarity, give a planar embedding.
+To show that a graph is not planar, use Kuratowski's theorem.
+
+\bigskip
+
+\begin{center}
+{\large Graph $H$:\ }
+\begin{minipage}{2.1in}
+        \includegraphics[width=2in]{planar_graphH_hw5.pdf}
+\end{minipage}
+\hfill
+{\large Graph $G$:\ }
+\begin{minipage}{2.4in}
+        \includegraphics[width=1.8in]{planar_graphG_hw5.pdf}
+\end{minipage}
+\end{center}
+\end{problem}
+
+%%%%%%%%%%%%%%%%%
+% solution 1
+
+\begin{solution}
+	\\ For graph H, you can make a planar embedding by moving vertex $e$, therefore, it is planar.
+	\\ \includegraphics[scale=0.2]{h.png}
+	\\ For graph G, we can find a subgraph that is homeomorphic to $k_{3,3}$, therefore, according to Kuratowski's theorem, it is not planar.
+	\\ \includegraphics[scale=0.2]{g.png}
+\end{solution}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\vskip 0.25in
+
+\begin{problem}
+(a) For each degree sequence below, determine whether there is a graph with $6$ vertices where vertices have
+these degrees. If a graph exists, (i) draw it, (ii) find the chromatic number and justify. If it doesn't, justify that it doesn't exist.
+
+\noindent Note. To give a justification for the chromatic number, you need to give a coloring and explain why it's not possible to use fewer colors.
+%
+%
+\begin{description}\setlength{\itemsep}{-3pt}
+	\item{(a1)} $5, 4, 4, 3, 3, 1$. 
+	\item{(a2)} $5, 4, 3, 2, 2, 1$.
+	\item{(a3)} $4, 4, 4, 3, 3, 2$.
+\end{description}
+
+\noindent (b) For each degree sequence below, determine whether there is a planar graph with $6$ vertices where vertices have
+these degrees. If a graph exists, (i) draw it, (ii) find the chromatic number and justify. If it doesn't, justify that it doesn't exist.
+
+% 
+%
+\begin{description}\setlength{\itemsep}{-3pt}
+	\item{(b1)} $5, 5, 4, 4, 4, 2$.
+	\item{(b2)} $3, 3, 3, 3, 3, 3$.
+\end{description}
+\end{problem}
+
+\begin{solution} \\
+	a1)  This graph does exist. Its chromatic number is 4. You can color it with 4 colors, but cannot color it with 3. This is because there is a clique of four vertices: on the picture, it is the vertices labeled 3, 4, 5.
+	\\ \includegraphics[scale=0.2]{a1.png}
+	\\
+	a2) This graph doesn't exist because the sum of degrees is not even. This violates the handshake lemma.
+	\\
+	a3) This graph does exist. Its chromatic number is 3. It cannot be colored with 2 colors because there is a clique of 3: the three vertices labeled 4.
+	\\ \includegraphics[scale=0.3]{a3.png}
+
+
+	
+\end{solution}
+
+\vspace{0.15in}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}
+
+a) Does the graph shown below have an Euler tour? Give a complete justification for your answer.
+
+b) Does the graph shown below have a Hamiltonian cycle? Give a complete justification for your answer.
+
+
+	\begin{center}
+	\includegraphics[width = 3in]{Ham_graph.pdf}
+	\end{center}
+
+\end{problem}
+
+\begin{solution}\\	
+	a) This graph does not have an Euler tour because there are vertices with odd degrees. For example, 33 is degree 3.
+	\\
+	% b) This graph has no Hamiltonian cycle. We can figure this out by using the contrapositive of Ore's theorem: If G does not have a Hamiltonian Cycle, then there is a pair of non-adjacent vertices, u and v, where $deg(u) + deg(v) < n$. Since $n=13$, and $deg(33) + deg(12) = 6 < n$, then this graph does not have a Hamiltonian cycle.
+	b) This graph does not contain a Hamiltonian cycle.
+	\\
+\end{solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\paragraph{Academic integrity declaration.}
+% The homework papers must include at the end an academic integrity declaration. This should be a short paragraph where you briefly explain 
+% \emph{in your own words}  (1) whether you did the homework individually or in collaboration with a partner student (if so, provide the name), 
+% and (2) whether you used any external help or resources. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.1in
+% \paragraph{Submission.}
+% To submit the homework, you need to upload the pdf file to Gradescope. If you submit with a partner, you need
+% to put two names on the assignment and submit it as a group assignment.
+% Remember that only {\LaTeX} papers are accepted. 
+
+
+\end{document}
+
