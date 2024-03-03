@@ -75,14 +75,21 @@ these degrees. If a graph exists, (i) draw it, (ii) find the chromatic number an
 \end{description}
 \end{problem}
 
+\newpage
 \begin{solution} \\
-	a1)  This graph does exist. Its chromatic number is 4. You can color it with 4 colors, but cannot color it with 3. This is because there is a clique of four vertices: on the picture, it is the vertices labeled 3, 4, 5.
-	\\ \includegraphics[scale=0.2]{a1.png}
+	a1)  This graph does exist. Its chromatic number is 4. You can color it with 4 colors, but cannot color it with 3. This is because there are two cliques of four vertices: on the picture, it is the vertices labeled 3, 4, 5.
+	\\ \includegraphics[scale=0.4]{a1.png}
 	\\
 	a2) This graph doesn't exist because the sum of degrees is not even. This violates the handshake lemma.
 	\\
 	a3) This graph does exist. Its chromatic number is 3. It cannot be colored with 2 colors because there is a clique of 3: the three vertices labeled 4.
-	\\ \includegraphics[scale=0.3]{a3.png}
+	\\ \includegraphics[scale=0.5]{a3.png}
+	\\\\\\\\\\
+	b1) This graph exists. The chromatic number is 5. As shown below, you can draw it with 5 colors, but it cannot be drawn with 4 because there is a clique of 5: the vertices labeled 4 and 5.
+	\\ \includegraphics[scale=0.4]{b1.png}
+	\\
+	b2) This graph exists. Its chromatic number is two because it is a bipartite graph. This is because that you can draw one side with one color, and the other side with another color.
+	\\ \includegraphics[scale=0.3]{b2.png}
 
 
 	
@@ -108,7 +115,7 @@ b) Does the graph shown below have a Hamiltonian cycle? Give a complete justific
 	a) This graph does not have an Euler tour because there are vertices with odd degrees. For example, 33 is degree 3.
 	\\
 	% b) This graph has no Hamiltonian cycle. We can figure this out by using the contrapositive of Ore's theorem: If G does not have a Hamiltonian Cycle, then there is a pair of non-adjacent vertices, u and v, where $deg(u) + deg(v) < n$. Since $n=13$, and $deg(33) + deg(12) = 6 < n$, then this graph does not have a Hamiltonian cycle.
-	b) This graph does not contain a Hamiltonian cycle.
+	b) This graph does not contain a Hamiltonian cycle. Imagine the graph as three rectangles surrounding a triangle. The vertices 01, 02, and 03 act like a funnel because you will have to go through them in order to move from one shape to the other. Since there are four shapes (three rectangles, one triangle), you will have to go through one of the three "funnel" vertices twice in order to get back to where you started. Therefore, this graph does not contain a Hamiltonian cycle.
 	\\
 \end{solution}
 
